@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# dmenu theming
+. $HOME/.local/bin/dmenu-theming
+
+prompt="-p "
+root_path="$HOME"
+
+find_path="$(find $root_path -maxdepth 3 -type d | \
+             sed 's|^'$root_path/'||' | \
+             dmenu -i $prompt $lines $colors $font)"
+
+if [[ ! -z "$find_path" ]]; then
+    pcmanfm "$find_path"
+fi
+
+exit 0

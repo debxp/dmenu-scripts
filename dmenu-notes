@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+notes_path="$HOME/notes"
+
+term="i3-sensible-terminal"
+edit="vim"
+
+# dmenu theming
+. $HOME/.local/bin/dmenu-theming
+
+prompt="-p "
+
+list="$(find $notes_path -maxdepth 1 -type f \
+       | sed 's|^'$notes_path/'||' \
+       | sort \
+       )"
+
+select="$(echo -e "$list" | dmenu $prompt $font $colors $lines)"
+
+slugger () {
+echo $@ | tr -d '[:punct:]'     \
+        | sed -e "s/ /-/g"      \
+              -e "s/[áàãâ]/a/g" \
+              -e "s/[éê]/e/g"   \
+              -e "s/[íÍ]/i/g"   \
+              -e "s/[óõô]/o/g"  \
+              -e "s/[úü]/u/g"   \
+              -e "s/[ç]/c/g"
+}
+
+create_note () {
+    filename="$(slugger "${1,,}")"
+    note="$notes_path/$filename.md"
+    title="${1,,}"
+    echo -e "# ${title^}\n\n" > "$note"
+    notify-send -i "notes" "New note!" "The note <b>$filename.md</b> was created in '$notes_path'"
+}
+
+open_note () {
+    note_select="$notes_path/$select"
+    if [[ ! -f "$note_select" ]]; then
+        create_note "$select"
+    else
+        note="$note_select"
+    fi
+    eval "$($term -T "SimplerNote" -e "$edit $note")"
+}
+
+if [[ ! -z "$select" ]]; then
+    open_note 
+fi
+
+exit 0

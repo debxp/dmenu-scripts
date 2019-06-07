@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+# dmenu theming
+lines="-l 3"
+font="-fn Inconsolata-15"
+colors="-nb #2C323E -nf #9899a0 -sb #BF616A -sf #2C323E"
+
+first_prompt="O que você quer?"
+opt1="Sair do i3\nReiniciar\nDesligar"
+opt2="Sim\nNão"
+
+
+ask() {
+    answer="$( echo -e $1 | dmenu -i -p "$2" $lines $colors $font )"
+}
+
+ask "$opt1" "$first_prompt"
+
+case $answer in
+    "Sair do i3")
+        ask "$opt2" "Quer mesmo sair do i3wm?"
+        if [[ $answer == "Sim" ]]; then
+            i3-msg exit
+        fi
+        exit 0
+        ;;
+    "Reiniciar")
+        ask "$opt2" "Quer mesmo reiniciar o sistema?"
+        if [[ $answer == "Sim" ]]; then
+            systemctl reboot
+        fi
+        exit 0
+        ;;
+    "Desligar")
+        ask "$opt2" "Quer mesmo desligar o computador?"
+        if [[ $answer == "Sim" ]]; then
+            systemctl poweroff
+        fi
+        exit 0
+        ;;
+esac
+
+exit 0
