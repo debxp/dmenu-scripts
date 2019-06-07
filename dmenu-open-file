@@ -9,7 +9,7 @@ scripts_path="$HOME/.local/bin"
 # dmenu theming
 . "$scripts_path/dmenu-theming"
 
-prompt="-p "
+prompt="-p Folder"
 
 file_path="$(find $root_path -maxdepth 5 -type d \( ! -regex '.*/\..*' \) | \
              sed 's|^'$root_path/'||' | sort | \
@@ -26,9 +26,9 @@ if [[ ! -z $file_path ]]; then
     total="$(find "$search_path" -maxdepth 1 -type f | wc -l)"
     
     if [[ $total -eq 0 ]]; then
-        prompt=" No files here!"
+        prompt="No files here!"
     else
-        prompt=""
+        prompt="File:"
     fi
 
     file_name="$(find "$search_path" -maxdepth 1 -type f | \

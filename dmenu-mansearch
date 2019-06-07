@@ -3,7 +3,7 @@
 # dmenu theming
 . $HOME/.local/bin/dmenu-theming
 
-prompt="-p "
+prompt="-p Manual:"
 
 # terminal to open manual
 terminal="xfce4-terminal"
