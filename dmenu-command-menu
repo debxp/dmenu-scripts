@@ -3,7 +3,7 @@
 # dmenu theming
 . $HOME/.local/bin/dmenu-theming
 
-prompt="-p Command:"
+prompt="-p Run:"
 
 dmenu_run $prompt $lines $colors $font
 
