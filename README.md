@@ -8,6 +8,10 @@ Default ``dmenu_run`` with custom theme and prompt.
 
 Default ``i3-dmenu-desktop`` with custom theme and prompt.
 
+### dmenu-kill-process
+
+List user processes to search and kill.
+
 ### dmenu-i3-logout
 
 Session logout and system shutdown for i3wm.
