@@ -23,4 +23,3 @@ if [[ ! -z $selected ]]; then
 fi
 
 exit 0
-@debxp
