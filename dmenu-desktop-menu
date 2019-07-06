@@ -4,6 +4,7 @@
 . $HOME/.local/bin/dmenu-theming
 
 prompt="-p Launch:"
+colors="-nb \#2C323E -nf \#9899a0 -sb \#81A1C1 -sf \#E5E9F0"
 
-i3-dmenu-desktop --dmenu="dmenu -i $prompt $lines $colors $font"
+j4-dmenu-desktop --dmenu="dmenu -i $prompt $lines $font $colors"
 
