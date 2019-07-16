@@ -8,7 +8,7 @@ edit="vim"
 # dmenu theming
 . $HOME/.local/bin/dmenu-theming
 
-prompt="-p Note:"
+prompt="-p "
 
 list="$(find -L $notes_path -maxdepth 1 -type f \
        | sed 's|^'$notes_path/'||' \
