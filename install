@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# Copy all files to ~/.local/bin but exclude install LICENCE and README.md
+
+FILES=$(ls -1 -I install -I LICENSE -I README.md)
+DIRECTORY=$HOME/.local/bin/
+
+if [ ! -d "$DIRECTORY" ]; then
+  mkdir "$DIRECTORY"
+fi
+
+for file in $FILES;
+do
+  cp "$file" "$DIRECTORY/$file";
+done
+
+echo "Installed"

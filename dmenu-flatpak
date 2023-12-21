@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# Written by Johnny Mast <mastjohnny@gmail.com>
+# Feel free to use and/or abuse.
+
+# dmenu theming
+. $HOME/.local/bin/dmenu-theming
+
+# Set to 1 if you wish to sort the menu alphabetically.
+SORT=0
+
+# -i Case insensative
+# -l 20
+#
+# Note: Additionally if you have the center patch installed you can add -c to center the menu.
+DMENU_PARAMS="$prompt $lines $colors $font -i -l 20"
+
+# Parses a list of flatpak packages only grabbing unique handles.
+# Additionally sorts alphabetically if SORT is set to 1.
+if [ $SORT == 1 ]; then
+    SELECTION=$(flatpak list | awk 'FS="\t" {print $1}' | uniq | sort | dmenu ${DMENU_PARAMS})
+  else
+    SELECTION=$(flatpak list | awk 'FS="\t" {print $1}' | uniq | dmenu ${DMENU_PARAMS})
+fi
+
+EXITCODE=$?
+
+APPID=$(flatpak list | grep -w "${SELECTION}" |  awk -F "\t" '{print $2}')
+
+if [[ ! -z "${EXITCODE}" ]]; then
+  flatpak run ${APPID}
+fi

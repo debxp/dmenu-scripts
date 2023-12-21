@@ -1,5 +1,9 @@
 # dmenu-scripts
 
+### install
+
+Run install to install the menu's in ~/.local/bin.
+
 ### dmenu-command-menu
 
 Default ``dmenu_run`` with custom theme and prompt.
@@ -7,6 +11,10 @@ Default ``dmenu_run`` with custom theme and prompt.
 ### dmenu-desktop-menu
 
 Default ``i3-dmenu-desktop`` with custom theme and prompt.
+
+### dmenu-flatpak
+
+Select and launch flatpaks from dmenu.
 
 ### dmenu-kill-process
 
